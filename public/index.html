@@ -1,31 +1,55 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Anonymous Chat</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Anonymous Chat</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <!-- AGE VERIFICATION SCREEN -->
+      <div id="ageScreen" class="card">
+        <h2>🔞 Age Verification</h2>
+        <p>You must be <b>18 years or older</b> to use this site.</p>
 
-<!-- NAME SCREEN -->
-<div id="nameScreen">
-  <h2>Enter your name</h2>
-  <input id="username" placeholder="Your name" />
-  <button onclick="joinChat()">Start Chat</button>
-</div>
+        <button onclick="confirmAge(true)">I am 18 or older</button>
+        <button class="danger" onclick="confirmAge(false)">
+          I am under 18
+        </button>
+      </div>
 
-<!-- CHAT SCREEN -->
-<div id="chatScreen" style="display:none;">
-  <h2>Anonymous Chat</h2>
-  <div id="status"></div>
+      <!-- NAME SCREEN -->
+      <div id="nameScreen" class="card" style="display: none">
+        <h2>👋 Welcome</h2>
+        <p>Enter your name to start chatting</p>
 
-  <div id="chatBox"></div>
+        <input id="username" placeholder="Your name" autocomplete="off" />
+        <button onclick="joinChat()">Start Chat</button>
+      </div>
 
-  <input id="msg" placeholder="Type message..." autocomplete="off">
-  <button onclick="sendMsg()">Send</button>
-  <button onclick="nextChat()">Next</button>
-</div>
+      <!-- CHAT SCREEN -->
+      <div id="chatScreen" class="card" style="display: none">
+        <h2>💬 Anonymous Chat</h2>
 
-<script src="/socket.io/socket.io.js"></script>
-<script src="js/chat.js"></script>
-</body>
+        <div id="status" class="status">Connecting...</div>
+
+        <div id="chatBox" class="chat-box"></div>
+
+        <div class="input-area">
+          <input id="msg" placeholder="Type a message..." autocomplete="off" />
+          <button onclick="sendMsg()">Send</button>
+        </div>
+
+        <button class="next-btn" onclick="nextChat()">Next</button>
+      </div>
+
+      <p class="term">
+        ⚠️This service is intended for users aged 18 and above. By continuing, you
+        confirm that you meet this requirement.
+      </p>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/chat.js"></script>
+  </body>
 </html>
